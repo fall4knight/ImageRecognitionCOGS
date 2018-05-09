@@ -58,6 +58,7 @@ def extract_DenseSift_descriptors(img):
     Return None if there's no descriptor detected
     """
     # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.convertScaleAbs(img)
     sift = cv2.xfeatures2d.SIFT_create()
 
     # opencv docs DenseFeatureDetector

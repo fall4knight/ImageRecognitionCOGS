@@ -57,8 +57,8 @@ def spatial_pyramid_matching(image, descriptor, codebook, level):
         return np.concatenate((code_level_0, code_level_1, code_level_2))
 
 
-VOC_SIZE = 100
-PYRAMID_LEVEL = 1
+VOC_SIZE = 200
+PYRAMID_LEVEL = 4
 
 DSIFT_STEP_SIZE = 4
 # DSIFT_STEP_SIZE is related to the function

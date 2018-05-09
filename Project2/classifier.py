@@ -15,11 +15,11 @@ def get_label(path='./cifar10/train/labels.txt'):
 
 
 def svm_classifier(x_train, y_train, x_test=None, y_test=None):
-    if x_test == None and y_test == None:
-        x_train, x_test, y_train, y_test = train_test_split(
-                x_train, y_train, test_size=0.2, random_state=6)
-        print("Spliting train:{}/test:{} from training data".format(
-                len(x_train), len(x_test)))
+    # if not x_test and not y_test:
+    #     x_train, x_test, y_train, y_test = train_test_split(
+    #             x_train, y_train, test_size=0.2, random_state=6)
+    #     print("Spliting train:{}/test:{} from training data".format(
+    #             len(x_train), len(x_test)))
     C_range = 10.0 ** np.arange(-3, 3)
     gamma_range = 10.0 ** np.arange(-3, 3)
     param_grid = dict(gamma=gamma_range.tolist(), C=C_range.tolist())
@@ -40,3 +40,4 @@ def svm_classifier(x_train, y_train, x_test=None, y_test=None):
     y_true, y_pred = y_test, clf.predict(x_test)
     #print(classification_report(y_true, y_pred, target_names=get_label()))
     print(classification_report(y_true, y_pred))
+    return y_true, y_pred

@@ -13,16 +13,16 @@ def build_spatial_pyramid(image, descriptor, level):
     """
     assert 0 <= level <= 2, "Level Error"
     step_size = DSIFT_STEP_SIZE
-    from utils import DSIFT_STEP_SIZE as s
+    from utils2 import DSIFT_STEP_SIZE as s
     assert s == step_size, "step_size must equal to DSIFT_STEP_SIZE\
                             in utils.extract_DenseSift_descriptors()"
     h = image.shape[0] / step_size
     w = image.shape[1] / step_size
-    idx_crop = np.array(range(len(descriptor))).reshape(h,w)
+    idx_crop = np.array(range(len(descriptor))).reshape(int(h),int(w))
     size = idx_crop.itemsize
     height, width = idx_crop.shape
     bh, bw = 2**(3-level), 2**(3-level)
-    shape = (height/bh, width/bw, bh, bw)
+    shape = (int(height/bh), int(width/bw), int(bh), int(bw))
     strides = size * np.array([width*bh, bw, width, 1])
     crops = np.lib.stride_tricks.as_strided(
             idx_crop, shape=shape, strides=strides)
